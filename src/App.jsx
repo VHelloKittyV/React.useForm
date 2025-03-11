@@ -13,6 +13,7 @@ export default function App() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log(data);
+      reset()
     } catch (error) {
       setError("email", { message: "this mail is already taken" });
     }
@@ -43,6 +44,7 @@ export default function App() {
             placeholder="Email"
             className="px-3 py-2 border"
           />
+          
           {errors.email && <div className="text-red-600">{errors.email.message}</div>}
 
           {/* Password */}
@@ -50,7 +52,7 @@ export default function App() {
           <input 
             {...register("password", {
               required: "Password is required",
-              minLength:{value:6, message: "Password is too small"}
+              minLength:{value:6, message: "Password must be at least 6 characters"}
             })}
             type="password"
             placeholder="Password"
